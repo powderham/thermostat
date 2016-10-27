@@ -1,3 +1,5 @@
+'use strict';
+
 describe('Thermostat', function () {
     var thermostat;
 
@@ -22,15 +24,20 @@ describe('Thermostat', function () {
   });
 
   it('can be turned up', function () {
-    expect(thermostat.up(4)).toEqual(24)
+    thermostat.up();
+    expect(thermostat.temperature).toEqual(21)
   });
 
   it('can be turned down', function () {
-    expect(thermostat.down(4)).toEqual(16)
+    thermostat.down();
+    expect(thermostat.temperature).toEqual(19)
   });
 
   it('has a minimum temperature of 10', function () {
-    expect(thermostat.down(11)).toEqual('Minimum temperature is 10 degrees')
+    for (var i = 1; i < 11; i++){
+      thermostat.down();
+    }
+    expect(thermostat.down()).toEqual('Minimum temperature is 10 degrees')
   });
 
   it('sets the powersaving mode to on', function () {
@@ -50,12 +57,18 @@ describe('Thermostat', function () {
 
   it('has a maximum temperature of 25 in powersaver mode', function () {
     thermostat.setPowersaver(true);
-    expect(thermostat.up(6)).toEqual('Stop it, you\'re ruining the planet!');
+    for (var i = 1; i < 6; i ++){
+      thermostat.up();
+    }
+    expect(thermostat.up()).toEqual('Stop it, you\'re ruining the planet!');
   });
 
   it('has a maximum temperature of 32 degrees', function () {
     thermostat.setPowersaver(false);
-    expect(thermostat.up(13)).toEqual('Stop it, you\'re ruining the planet!');
+    for (var i = 1; i < 13; i++){
+      thermostat.up();
+    }
+    expect(thermostat.up()).toEqual('Stop it, you\'re ruining the planet!');
   });
 
   it('resets the temperature to 20', function () {
@@ -65,7 +78,9 @@ describe('Thermostat', function () {
   });
 
   it('returns low-usage when temperature is below 18', function () {
-    thermostat.down(3);
+    for (var i = 1; i < 4; i++){
+      thermostat.down();
+    }
     expect(thermostat.usage()).toEqual('Low-usage');
   });
 
@@ -74,8 +89,10 @@ describe('Thermostat', function () {
   });
 
   it('returns high-usage when temperature is higher than 24', function () {
-    thermostat.up(5);
-    expect(thermostat.usage()).toEqual('High-usage');    
+    for (var i = 1; i < 6; i ++) {
+          thermostat.up();
+    }
+    expect(thermostat.usage()).toEqual('High-usage');
   });
 
 });

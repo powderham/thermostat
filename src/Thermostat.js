@@ -14,7 +14,7 @@ function Thermostat() {
 
 Thermostat.prototype.up = function () {
   if (this._isAtMaximum() === true) {
-    return('Stop it, you\'re ruining the planet!');
+    return ('Stop it, you\'re ruining the planet!');
   }
   this.temperature++;
 }
@@ -27,8 +27,12 @@ Thermostat.prototype.down = function () {
   }
 }
 
-Thermostat.prototype.setPowersaver = function (state) {
-  this.powersaver = state;
+Thermostat.prototype.setPowersaver = function () {
+  if (this.powersaver === true) {
+    this.powersaver = false;
+  } else {
+    this.powersaver = true;
+  }
   this._changeMaxTemp();
 }
 

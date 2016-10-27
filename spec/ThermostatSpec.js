@@ -40,23 +40,23 @@ describe('Thermostat', function () {
     expect(thermostat.down()).toEqual('Minimum temperature is 10 degrees')
   });
 
-  it('sets the powersaving mode to on', function () {
-    thermostat.setPowersaver(true);
-    expect(thermostat.powersaver).toBe(true)
-  });
-
   it('sets the powersaving mode to off', function () {
-    thermostat.setPowersaver(false);
+    thermostat.setPowersaver();
     expect(thermostat.powersaver).toBe(false)
   });
 
+  it('sets the powersaving mode to on', function () {
+    thermostat.setPowersaver();
+    thermostat.setPowersaver();
+    expect(thermostat.powersaver).toBe(true)
+  });
+
   it('changes the default maximum temperature to 32', function () {
-    thermostat.setPowersaver(false);
+    thermostat.setPowersaver();
     expect(thermostat.maximumtemp).toEqual(32)
   });
 
   it('has a maximum temperature of 25 in powersaver mode', function () {
-    thermostat.setPowersaver(true);
     for (var i = 1; i < 6; i ++){
       thermostat.up();
     }

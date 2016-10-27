@@ -24,7 +24,7 @@ Thermostat.prototype.down = function () {
     return 'Minimum temperature is 10 degrees';
   } else {
   this.temperature--;
-}
+  }
 }
 
 Thermostat.prototype.setPowersaver = function (state) {

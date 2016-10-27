@@ -1,16 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <style>
+    .test {
+      color: green;
+    }
+    .test{
+      background-color: pink;
+    }
+  </style>
   <script src="src/Thermostat.js"></script>
 </head>
 
-<body>
+<body id="main-body">
+  <script src="jquery.js"></script>
+  <script>
+  window.onload = function() {
+    $( "body" ).addClass( "test" );
+  };
+  </script>
 
-  <h2 id="temperature-display">20</h2>
+  <h2 id="temperature">20</h2>
   <button type="button" id="up">Up</button>
   <button type="button" id="down">Down</button>
   <button type="button" id="power-saver">Power Saver</button>
   <button type="button" id="reset">Reset</button>
-
 </body>
 </html>

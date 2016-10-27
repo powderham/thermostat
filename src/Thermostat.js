@@ -16,14 +16,14 @@ Thermostat.prototype.up = function () {
   if (this._isAtMaximum() === true) {
     return('Stop it, you\'re ruining the planet!');
   }
-  return (this.temperature ++ );
+  this.temperature++;
 }
 
 Thermostat.prototype.down = function () {
   if (this._isAtMinimum() === true) {
     return 'Minimum temperature is 10 degrees';
   } else {
-  return (this.temperature --);
+  this.temperature--;
 }
 }
 

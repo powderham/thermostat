@@ -1,5 +1,15 @@
 $( document ).ready(function () {
   var thermostat = new Thermostat();
+console.log('hello');
+  $.getJSON('http://api.openweathermap.org/data/2.5/weather?q=London&APPID=121a9ab6b7bae94bcb61113c310c6e21', function (data){
+  $(".result").text(data.weather[0].description);
+  $(".temp").text(Math.round((data.main.temp-273.15)*10)/10);
+  console.log(data);
+  // // for (x in data.weather) {
+  // //   console.log(x);
+  // }
+});
+
   updateTemperature();
   $('.toggle').toggles({
     drag: true, // allow dragging the toggle between positions

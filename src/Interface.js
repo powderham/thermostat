@@ -1,17 +1,20 @@
 $( document ).ready(function () {
   var thermostat = new Thermostat();
-console.log('hello');
-  $.getJSON('http://api.openweathermap.org/data/2.5/weather?q=London&APPID=121a9ab6b7bae94bcb61113c310c6e21', function (data){
-  $(".result").text(data.weather[0].description);
-  $(".temp").text(Math.round((data.main.temp-273.15)*10)/10);
-  console.log(data);
-  // // for (x in data.weather) {
-  // //   console.log(x);
-  // }
-});
+  var city = 'London'
+
+  var updateWeather = function () {
+    $.getJSON('http://api.openweathermap.org/data/2.5/weather?q='+city+'&APPID=121a9ab6b7bae94bcb61113c310c6e21', function (data){
+      $(".temp").text(Math.round((data.main.temp-273.15)*10)/10);
+      $(".weather-description").text(data.weather[0].description);
+      $(".city").text(city);
+    });
+  };
+
+  $(".city").text(city);
 
   updateTemperature();
-  
+  updateWeather();
+
   $('.toggle').toggles({
     drag: true, // allow dragging the toggle between positions
     click: true, // allow clicking on the toggle
@@ -47,6 +50,12 @@ console.log('hello');
     thermostat.reset();
     updateTemperature();
   });
+
+  $('#citySelector').click(function () {
+    city = $('#selectedCity').val();
+    updateWeather();
+  });
+
 
   function updateTemperature(){
     $('#temperature').text(thermostat.temperature);

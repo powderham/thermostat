@@ -24,6 +24,13 @@ $( document ).ready(function () {
     });
   };
 
+    $.get  ('http://localhost:4567/testcity.json', function (data){
+    city = data.cityName
+  });
+
+
+
+
   $(".city").text(city);
 
   updateTemperature();

@@ -11,6 +11,7 @@ console.log('hello');
 });
 
   updateTemperature();
+  
   $('.toggle').toggles({
     drag: true, // allow dragging the toggle between positions
     click: true, // allow clicking on the toggle

@@ -51,10 +51,10 @@ Thermostat.prototype.reset = function () {
 Thermostat.prototype.usage = function () {
   if (this.temperature < this.LOW_USAGE) {
     return 'Low-usage';
-  } else if (this.temperature > this.HIGH_USAGE) {
-    return 'High-usage';
-  } else {
+  } else if (this.temperature < this.HIGH_USAGE) {
     return 'Medium-usage';
+  } else {
+    return 'High-usage';
   }
 }
 

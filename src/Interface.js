@@ -1,3 +1,17 @@
+String.prototype.capitaliseFirstLetter = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
+String.prototype.capitaliseEachWord = function() {
+    var newArray = []
+    var array = this.split(" ");
+    for(var i=0; i<array.length;i++){
+      newArray.push(array[i].capitaliseFirstLetter());
+    };
+    return newArray.join(" ");
+};
+
+
 $( document ).ready(function () {
   var thermostat = new Thermostat();
   var city = 'London'
@@ -5,8 +19,8 @@ $( document ).ready(function () {
   var updateWeather = function () {
     $.getJSON('http://api.openweathermap.org/data/2.5/weather?q='+city+'&APPID=121a9ab6b7bae94bcb61113c310c6e21', function (data){
       $(".temp").text(Math.round((data.main.temp-273.15)*10)/10);
-      $(".weather-description").text(data.weather[0].description);
-      $(".city").text(city);
+      $(".weather-description").text(data.weather[0].description.capitaliseFirstLetter());
+      $(".city").text(city.capitaliseEachWord());
     });
   };
 
@@ -53,6 +67,7 @@ $( document ).ready(function () {
 
   $('#citySelector').click(function () {
     city = $('#selectedCity').val();
+    $('#selectedCity').val("");
     updateWeather();
   });
 
